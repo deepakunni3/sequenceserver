@@ -105,6 +105,7 @@ module SequenceServer
       def validate_blast_params(params)
         validate_blast_method params[:method]
         validate_blast_sequences params[:sequence]
+        validate_query_sequences params[:sequence]
         validate_blast_databases params[:databases]
         validate_blast_options params[:advanced]
       end
@@ -122,6 +123,13 @@ module SequenceServer
       def validate_blast_sequences(sequences)
         return true if sequences.is_a?(String) && !sequences.empty?
         fail ArgumentError, 'Sequences should be a non-empty string.'
+      end
+
+      def validate_query_sequences(sequences)
+        # Setting a hard limit of 50 kbp as input sequence size
+        # and an additional 500 bp for sequence header
+        return true if sequences.is_a?(String) && sequences.length < 50500
+        fail ArgumentError, 'Length of input sequences should be less than 50 kbp.'
       end
 
       def validate_blast_databases(database_ids)
