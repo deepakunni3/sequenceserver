@@ -26,13 +26,137 @@
     <link rel="stylesheet" media="screen,print" type="text/css" href="css/font-awesome.min.css"/>
     <link rel="stylesheet" media="screen,print" type="text/css" href="css/custom.css"/>
   <% end %>
+
+  <!-- BGD header-specific includes -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link rel="shortcut icon" href="http://bovinegenome.org/sites/genomes.arc.georgetown.edu.drupal.bovine/files/favicon.ico" type="image/x-icon"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/modules/node/node.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/modules/system/defaults.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/modules/system/system.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/modules/system/system-menus.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/modules/user/user.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/sites/all/modules/cck/theme/content-module.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/sites/all/modules/fckeditor/fckeditor.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/sites/all/modules/cck/modules/fieldgroup/fieldgroup.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/sites/all/modules/views/css/views.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/sites/bovinegenome.org/themes/zen/zen/html-elements.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/sites/bovinegenome.org/themes/zen/zen/tabs.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/sites/bovinegenome.org/themes/zen/zen/messages.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/sites/bovinegenome.org/themes/zen/zen/block-editing.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/sites/bovinegenome.org/themes/zen/zen/wireframes.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/sites/bovinegenome.org/themes/cti_flex.bak/fluid-layout.css?4"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://bovinegenome.org/sites/bovinegenome.org/themes/cti_flex.bak/cti-flex.css?4"/>
+  <link type="text/css" rel="stylesheet" media="print" href="http://bovinegenome.org/sites/bovinegenome.org/themes/zen/zen/print.css?4"/>
+  <script type="text/javascript" src="http://www.bovinegenome.org/misc/jquery.js?4"></script>
+  <script type="text/javascript" src="http://www.bovinegenome.org/misc/drupal.js?4"></script>
+  <script type="text/javascript" src="http://www.bovinegenome.org/sites/all/modules/insertFrame/insertFrame.js?4"></script>
+
+  <!-- BGD header-specific CSS styles -->
+  <style type="text/css">
+    body {
+      font-family: Arial, Helvetica, "Bitstream Vera Sans", sans-serif;
+      background: #eeeeee none;
+    }
+    #header-inner, #footer {
+      background: #ffffff none;
+    }
+    #navbar, #sidebar-left .block h2.title, #sidebar-right .block h2.title {
+      background: #800000;
+      border: #800000;
+    }
+    #sidebar-left .block .content, #sidebar-right .block .content {
+      background-color: #f2eaab;
+      border: 1px solid #f2eaab;
+    }
+    #main a {
+      color: #800000;
+    }
+    #site-name a:link, #site-name a:visited, #site-slogan, #footer {
+      color: #800000;
+    }
+    #suckerfishmenu a, #sidebar-left .block h2.title, #sidebar-right .block h2.title, #sidebar-left .block h2.title a, #sidebar-right .block h2.title a {
+      color: #fcffeb;
+    }
+    #secondary a {
+      color: #fcffeb;
+    }
+  </style>
 </head>
 
 <body>
-
-
-
-
+  <!-- start of BGD header -->
+  <div id="page">
+    <div id="page-inner">
+    <a name="top" id="navigation-top"></a>
+    <div id="header">
+      <div id="header-inner" class="clear-block">
+        <a href="http://bovinegenome.org">
+        <table width="100%" height="100" cellspacing="0" cellpadding="0" border="0">
+          <tr bgcolor="#ffffff">
+            <td><img width="250" height="100" border="0" align="left" src="http://bovinegenome.org/images/BovineBannerLeft100.png" alt=""/></td>
+            <td><center><img border="0" align="center" src="http://bovinegenome.org/images/BovineGenomeBannerTitleshorter.png" alt=""/></center></td>
+            <td><img width="250" height="100" border="0" align="right" src="http://bovinegenome.org/images/BovineBannerRight100.png" alt=""/></td>
+          </tr>
+        </table>
+        </a>
+      </div>
+    </div>
+    <div id="main">
+      <div id="main-inner" class="clear-block with-navbar">
+        <div id="navbar">
+          <div id="navbar-inner" class="clear-block region region-navbar">
+            <a name="navigation" id="navigation"></a>
+              <div style="clear:both">
+                <div id="suckerfishmenu">
+                <ul class="menu">
+                  <li class="leaf first"><a href="http://bovinegenome.org" title="Welcome to BGD" class="active">Home</a></li>
+                  <li class="leaf"><a href="http://www.bovinegenome.org/?q=bovine_genome_consortium">Genome Consortia</a></li>
+                  <li class="expanded active-trail"><a href="" class="active">Search and Annotation Tools</a>
+                    <ul class="menu">
+                      <li class="leaf first"><a href="http://bovinegenome.org/bovinemine_blast/">BLAST</a></li>
+                      <li class="leaf"><a href="http://www.bovinegenome.org/?q=annotator_login">Web Apollo Annotation Tool</a></li>
+                      <li class="leaf"><a href="http://www.bovinegenome.org/?q=chromosome_id_lookup">Chromosome and Scaffold ID Lookup</a></li>
+                      <li class="leaf"><a href="http://www.bovinegenome.org/?q=annotation_assembly_comparison" title="Annotation Assembly Comparison">Annotation Assembly Comparison</a></li>
+                      <li class="leaf"><a href="http://bovinegenome.org/?q=node/65">Ensembl-NCBI Comparison</a></li>
+                      <li class="leaf last"><a href="http://bovinegenome.org/?q=node/64">Predicted Transcript RNAseq Read Count</a></li>
+                    </ul>
+                  </li>
+                  <li class="expanded"><a href="" class="active">Genome Browsers</a>
+                    <ul class="menu">
+                      <li class="leaf first"><a href="http://bovinegenome.org/?q=node/47">UMD3.1 JBrowse</a></li>
+                      <li class="leaf last"><a href="http://bovinegenome.org/Apollo2/2784249/jbrowse/index.html">Btau_4.6.1 JBrowse</a></li>
+                    </ul>
+                  </li>
+                  <li class="leaf"><a href="http://bovinegenome.org/bovinemine" title="Link to BovineMine">BovineMine</a></li>
+                  <li class="expanded"><a href="" class="active">Downloads</a>
+                    <ul class="menu">
+                      <li class="leaf first"><a href="http://www.bovinegenome.org/?q=node/61">UMD3.1 Downloads</a></li>
+                      <li class="leaf last"><a href="http://bovinegenome.org/?q=node/50">Btau_4.6.1 Downloads</a></li>
+                    </ul>
+                  </li>
+                  <li class="expanded last"><a href="http://bovinegenome.org/?q=Gbrowse_Archive">Archive</a>
+                    <ul class="menu">
+                      <li class="leaf first"><a href="http://bovinegenome.org/?q=Gbrowse_Archive" title="GBrowse genome browser for the UMD 3.1 assembly">GBrowse (Archive)</a></li>
+                      <li class="leaf"><a href="http://www.bovinegenome.org/?q=bovine_mir_interactions">Bovine miRNA Interactions (Archive)</a></li>
+                      <li class="leaf"><a href="http://www.bovinegenome.org/genepages/btau40/" title="genepages">Gene Pages (Archive)</a></li>
+                      <li class="leaf"><a href="http://www.bovinegenome.org/?q=cattle_est_database">EST Gene Family Database (Archive)</a></li>
+                      <li class="leaf"><a href="http://bovinegenome.org/bovineqtl_v2/" target="_blank" title="Bovine QTL Viewer (ARCHIVE)">Bovine QTL Viewer (Archive)</a></li>
+                      <li class="expanded last"><a href="" class="active">Bovine Map (Archive)</a>
+                        <ul class="menu">
+                          <li class="leaf first"><a href="http://www.bovinegenome.org/cgi-bin/gbrowse/bacmap" target="_blank">Bovine BAC Map (Archive)</a></li>
+                          <li class="leaf last"><a href="http://www.bovinegenome.org/cgi-bin/gbrowse/bosmap2" target="_blank">Composite Map (Archive)</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- end of BGD header -->
 
   <div
     class="navbar">
@@ -424,7 +548,20 @@
     <script type="text/javascript" src="js/sequence.js"></script>
   <% end %>
 
-  <!-- twitter -->
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  <!-- start of BGD footer -->
+  <div id="footer">
+    <div id="footer-inner" class="region region-footer">
+      <div id="footer-message">
+        <p style="font-size: 13px"><i>Photos courtesy of USDA NRSC and Mike MacNeil, USDA/ARS Fort Keogh LARRL.</i></p>
+        <div id="bgd_footer">
+          <div><img width="50" height="60" align="left" src="http://identity.missouri.edu/images/logos-design/mu-logo.png" alt="University of Missouri" /></div>
+          <p>The Bovine Genome Database <span>is supported by grants 2007-35616-17882 and 2010-65205-20407 from the USDA National Institute of Food and Agriculture </span>and is hosted at the <a href="http://www.missouri.edu/">University of Missouri</a>.&nbsp; If you have comments or if you wish to report a problem, please contact the <a href="mailto:bovinegenome@gmail.com">Bovine Genome Database Administrator</a>.</p>
+        </div>
+      <p><a href="http://bovinegenome.org/?q=user" style="font-size: 13px">Site Administration</a></p>
+      </div>
+    </div>
+  </div>
+  <!-- end of BGD footer -->
+
 </body>
 </html>
