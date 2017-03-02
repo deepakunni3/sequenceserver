@@ -115,6 +115,56 @@ module SequenceServer
         :icon  => 'fa-external-link'
       }
     end
+
+    def jbrowse
+      if SequenceServer::ORGANISMS.empty?
+        url = ''
+      elsif
+        representative_database = whichdb[0].name
+        organism_prefix = representative_database.split('/')[-1].split('-')[0]
+        organism_id = 0
+
+        if SequenceServer::ORGANISMS.has_key?(organism_prefix)
+          organism_id = SequenceServer::ORGANISMS.fetch(organism_prefix)
+        end
+
+        if id.match(NCBI_ID_PATTERN)
+          # NCBI Gene, mRNA or protein
+          # >gi|741912808|ref|XP_010799192.1
+          feature_id = id.split('|')[3]
+          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
+        elsif id.match('^gnl\|')
+          # Genomic sequence
+          # >gnl|UMD3.1|SEQNAME
+          seq_name = id.split(':')[1]
+          fmin = hsps.map(&:sstart).min
+          fmax = fmin + hsps.map(&:length).max
+          location_string = "#{seq_name}:#{fmin}..#{fmax}"
+          location_string = encode location_string
+          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{location_string}&highlight=#{location_string}"
+        elsif id.match('^ref\|')
+          # Header is a normal header
+          # >accession
+          # which is parsed as 'ref|accession'
+          header = id.split('|')
+          if header.length > 0
+            feature_id = header[1]
+          else
+            feature_id = header[0]
+          end
+
+          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
+        end
+      end
+
+      {
+        :order => 0,
+        :url   => url,
+        :title => "View in JBrowse",
+        :class => 'view-jbrowse',
+        :icon  => 'fa-eye'
+      }
+    end
   end
 end
 
