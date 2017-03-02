@@ -1,6 +1,7 @@
 require 'English'
 
 require 'sequenceserver/version'
+require 'sequenceserver/customproperties'
 require 'sequenceserver/exceptions'
 require 'sequenceserver/config'
 require 'sequenceserver/logger'
