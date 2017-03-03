@@ -17,6 +17,27 @@
       <script src="js/html5shiv.js"></script>
   <![endif]-->
 
+  <!-- HGD header-specific includes -->
+  <link rel="shortcut icon" href="http://hymenopteragenome.org/sites/default/files/favicon.ico" type="image/x-icon"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://hymenopteragenome.org/modules/node/node.css?Q"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://hymenopteragenome.org/modules/system/defaults.css?Q"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://hymenopteragenome.org/modules/system/system.css?Q"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://hymenopteragenome.org/modules/system/system-menus.css?Q"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://hymenopteragenome.org/modules/user/user.css?Q"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://hymenopteragenome.org/sites/all/modules/fckeditor/fckeditor.css?Q"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://hymenopteragenome.org/sites/all/themes/zeropoint/css/style-zero.css?Q"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://hymenopteragenome.org/sites/all/themes/zeropoint/css/nature.css?Q"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://hymenopteragenome.org/sites/all/themes/zeropoint/_custom/custom-style.css?Q"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://hymenopteragenome.org/sites/all/modules/views/css/views.css?Q"/>
+  <link type="text/css" rel="stylesheet" media="all" href="http://hymenopteragenome.org/sites/all/themes/zeropoint/css/round.css?Q"/>
+  <link type="text/css" rel="stylesheet" media="print" href="http://hymenopteragenome.org/sites/all/themes/zeropoint/css/print.css?Q"/>
+  <script type="text/javascript" src="http://hymenopteragenome.org/misc/jquery.js?Q"></script>
+  <script type="text/javascript" src="http://hymenopteragenome.org/misc/drupal.js?Q"></script>
+  <script type="text/javascript" src="http://hymenopteragenome.org/sites/all/modules/insertFrame/insertFrame.js?Q"></script>
+  <script type="text/javascript" src="http://hymenopteragenome.org/sites/all/themes/zeropoint/js/jquery.hoverIntent.minified.js?Q"></script>
+  <script type="text/javascript" src="http://hymenopteragenome.org/sites/all/themes/zeropoint/js/dropdown.js?Q"></script>
+  <script type="text/javascript" src="http://hymenopteragenome.org/sites/all/modules/poormanscron/poormanscron.js?Q"></script>
+
   <link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <% if settings.production? %>
@@ -29,10 +50,49 @@
 </head>
 
 <body>
-
-
-
-
+  <!-- HGD header start -->
+  <div id="bg1">
+    <div id="bg2">
+      <div id="top_bg" class="page0">
+        <div class="sizer0">
+          <div id="topex" class="expander0">
+            <div id="top_left">
+              <div id="top_right">
+                <div id="headimg">
+                  <div id="above" class="clearfix"></div>
+                  <div id="header" class="clearfix">
+                    <div id="top-elements">
+                      <div id="user_links"></div>
+                    </div>
+                    <div id="logo">
+                      <a href="http://hymenopteragenome.org" title="Home"><img src="http://hymenopteragenome.org/sites/default/files/zeropoint_logo.png" alt="Home"/></a>
+                    </div>
+                    <div id="name-and-slogan">
+                      <h1 id="site-name"><a href="http://hymenopteragenome.org" title="Home" style="color: #4f7f5b">Hymenoptera Genome Database</a></h1>
+                    </div>
+                    <div id="navlinks" class="navleft">
+                      <ul class="menu">
+                        <li class="leaf first active-trail"><a href="http://hymenopteragenome.org/?q=home" title="Hymenoptera Genome Database" class="active">Hymenoptera Home</a></li>
+                        <li class="leaf"><a href="http://hymenopteragenome.org/hymenopteramine" title="hymenopterMine">HymenopteraMine</a></li>
+                        <li class="leaf"><a href="http://hymenopteragenome.org/beebase/" title="BeeBase">BeeBase</a></li>
+                        <li class="leaf"><a href="http://hymenopteragenome.org/nasonia" title="NasoniaBase">NasoniaBase</a></li>
+                        <li class="leaf"><a href="http://hymenopteragenome.org/ant_genomes" title="">Ant Genomes Portal</a></li>
+                        <li class="leaf"><a href="http://hymenopteragenome.org/?q=Genome_Consortium_Publications%20" title="Genome Consortium Publications">Genome Consortium Publications</a></li>
+                        <li class="leaf"><a href="http://hymenopteragenome.org/?q=how_to_cite" title="How to Cite Hymenoptera Genome Database">How to Cite</a></li>
+                        <li class="leaf"><a href="http://hymenopteragenome.org/?q=about" title="About Us">About Us</a></li>
+                        <li class="leaf last"><a href="http://hymenopteragenome.org/?q=data_usage_policy" title="Data Usage Policy">Data Usage Policy</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- HGD header end -->
 
   <div
     class="navbar">
@@ -424,7 +484,77 @@
     <script type="text/javascript" src="js/sequence.js"></script>
   <% end %>
 
-  <!-- twitter -->
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  <!-- HGD footer start -->
+  <div id="body_bg" class="page0">
+    <div class="sizer0">
+      <div class="expander0">
+        <div id="body_left">
+          <div id="body_right">
+            <div class="navleft"></div>
+            <div id="middlecontainer">
+              <div id="wrapper">
+                <div class="outer">
+                  <div class="float-wrap">
+                    <div class="colmain">
+                      <div id="main">
+                        <div class="tabs"></div>
+                        <div id="node-7" class="node odd full-node node-type-page">
+                          <div class="meta"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <br class="brclear"/>
+                  </div>
+                  <br class="brclear"/>
+                </div>
+              </div>
+            </div>
+            <div id="bar"></div>
+            <ul class="links" id="navlist2" style="font-size: 83%">
+              <li class="menu-475 active-trail first active"><a href="http://hymenopteragenome.org/?q=home" title="Hymenoptera Genome Database" class="active">Hymenoptera Home</a></li>
+              <li class="menu-953"><a href="http://hymenopteragenome.org/hymenopteramine" title="hymenopterMine">HymenopteraMine</a></li>
+              <li class="menu-116"><a href="http://hymenopteragenome.org/beebase/" title="BeeBase">BeeBase</a></li>
+              <li class="menu-117"><a href="http://hymenopteragenome.org/nasonia" title="NasoniaBase">NasoniaBase</a></li>
+              <li class="menu-677"><a href="http://hymenopteragenome.org/ant_genomes" title="">Ant Genomes Portal</a></li>
+              <li class="menu-695"><a href="http://hymenopteragenome.org/?q=Genome_Consortium_Publications%20" title="Genome Consortium Publications">Genome Consortium Publications</a></li>
+              <li class="menu-694"><a href="http://hymenopteragenome.org/?q=how_to_cite" title="How to Cite Hymenoptera Genome Database">How to Cite</a></li>
+              <li class="menu-356"><a href="http://hymenopteragenome.org/?q=about" title="About Us">About Us</a></li>
+              <li class="menu-696 last"><a href="http://hymenopteragenome.org/?q=data_usage_policy" title="Data Usage Policy">Data Usage Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="eopage">
+    <div id="bottom_bg" class="page0">
+      <div class="sizer0">
+        <div class="expander0">
+          <div id="bottom_left">
+            <div id="bottom_right">
+              <div id="footer-wrapper" class="clearfix">
+                <div id="footer">
+                  <div class="legal">
+                    Copyright &copy; 2017 <a href="http://hymenopteragenome.org">Hymenoptera Genome Database</a>.
+                    <p>This site is best viewed in FireFox</p>
+                    <h2 style="font-size: 125% !important; color: #4f7f5b !important; font-weight: bold !important">
+                      The Hymenoptera Genome Database project is supported by Agriculture and Food Research Initiative Competitive grant no. 2010-65205-20407 from the USDA National Institute of Food Agriculture  and is hosted at the <a href="http://missouri.edu/" target="_blank">University of Missouri</a>.
+                    </h2>
+                      <p><img src="http://identity.missouri.edu/images/logos-design/mu-logo.png" alt="University of Missouri" width="50" height="60"></p>
+                      When using HGD, please cite our paper in <a href="http://nar.oxfordjournals.org/content/39/suppl_1/D658.full-text-lowres.pdf" target="_blank">Nucleic Acids Research</a>.
+                    <p><a href="http://hymenopteragenome.org/?q=login">Site Administration</a></p>
+                  </div>
+                </div>
+              </div>
+              <div id="belowme"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="by"></div>
+  <!-- HGD footer end -->
 </body>
 </html>
