@@ -514,3 +514,27 @@ svg:not(:root) {
 .badge.dbtype.protein {
   background-color: #00BCD4;
 }
+
+.resultn a {
+  color: #337AB7;
+}
+
+.side a {
+  color: #337AB7;
+}
+
+#sequence-viewer a {
+  color: #337AB7;
+}
+
+#ss-footer p {
+  font-size: 13px;
+  color: black;
+
+}
+
+#ss-footer a {
+  vertical-align: middle;
+  font-size: 13px;
+  color: #337AB7;
+}
