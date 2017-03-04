@@ -121,11 +121,16 @@ module SequenceServer
         url = ''
       elsif
         representative_database = whichdb[0].name
-        organism_prefix = representative_database.split('/')[-1].split('-')[0]
+        organism_prefix1 = representative_database.split('/')[-1].split('_')[0,3].join("_")
         organism_id = 0
 
-        if SequenceServer::ORGANISMS.has_key?(organism_prefix)
-          organism_id = SequenceServer::ORGANISMS.fetch(organism_prefix)
+        if SequenceServer::ORGANISMS.has_key?(organism_prefix1)
+          organism_id = SequenceServer::ORGANISMS.fetch(organism_prefix1)[:id]
+        else
+          organism_prefix2 = representative_database.split('/')[-1].split('_')[0,4].join("_")
+          if SequenceServer::ORGANISMS.has_key?(organism_prefix2)
+            organism_id = SequenceServer::ORGANISMS.fetch(organism_prefix2)[:id]
+          end
         end
 
         if id.match(NCBI_ID_PATTERN)
@@ -143,9 +148,7 @@ module SequenceServer
           location_string = encode location_string
           url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{location_string}&highlight=#{location_string}"
         elsif id.match('^ref\|')
-          # Header is a normal header
-          # >accession
-          # which is parsed as 'ref|accession'
+          # >ref|NAME
           header = id.split('|')
           if header.length > 0
             feature_id = header[1]
@@ -153,6 +156,10 @@ module SequenceServer
             feature_id = header[0]
           end
 
+          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
+        else
+          # >NAME
+          feature_id = id
           url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
         end
       end
