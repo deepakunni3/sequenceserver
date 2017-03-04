@@ -314,7 +314,7 @@
                                   <input type="checkbox" name="databases[]" value="<%= database.id %>" data-type="<%= database.type %>"/>
                                     <%= database.title or database.name %>
                                 </label>
-                                <span class="badge dbtype" style=""><%= database.type %></span>
+                                <span class="badge dbtype nucleotide" style=""><%= database.type %></span>
                                 </div>
                             </li>
                           <% end %>
@@ -330,7 +330,7 @@
                                   <input type="checkbox" name="databases[]" value="<%= database.id %>" data-type="<%= database.type %>"/>
                                     <%= database.title or database.name %>
                                 </label>
-                                <span class="badge dbtype"><%= database.type %></span>
+                                <span class="badge dbtype protein"><%= database.type %></span>
                               </div>
                             </li>
                           <% end %>

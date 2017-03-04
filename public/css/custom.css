@@ -503,7 +503,14 @@ svg:not(:root) {
 }
 
 .badge.dbtype {
-  background-color: #23CE47;
   border-radius: 4px;
   float: right;
+}
+
+.badge.dbtype.nucleotide {
+  background-color: #23CE47;
+}
+
+.badge.dbtype.protein {
+  background-color: #00BCD4;
 }
