@@ -244,37 +244,6 @@
       </div>
 
       <div
-        class="form-group databases-container">
-        <%# sort => same ordering of nucleotide and protein datbases %>
-        <% databases.keys.sort.each do |type| %>
-          <div
-            class="<%= databases[(databases.keys - [type]).first] ? 'col-md-6' : 'col-md-12' %>">
-            <div
-              class="panel panel-default">
-              <div
-                class="panel-heading">
-                <h4><%= type.capitalize %> databases</h4>
-              </div>
-              <ul
-                class="list-group databases <%= type %>">
-                <% databases[type].sort_by(&:title).each do |database| %>
-                  <li class="list-group-item">
-                    <div
-                      class="checkbox">
-                      <label>
-                        <input type="checkbox" name="databases[]" value="<%=database.id%>" data-type="<%=database.type%>" />
-                        <%= database.title or database.name %>
-                      </label>
-                    </div>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-        <% end %>
-      </div>
-
-      <div
         class="form-group">
         <div
           class="col-md-8">
@@ -318,6 +287,61 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="form-group databases-container">
+          <h4>Databases</h4><hr>
+          <div>
+            <% SequenceServer::ORGANISMS.keys.sort.each do |key| %>
+              <div class="panel-group" id="accordion" role="tablist">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="<%= key.gsub('.', '_') %>_heading">
+                    <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" data-parent="#" href="#<%= key.gsub('.', '_') %>_accordion">
+                          <%= SequenceServer::ORGANISMS[key][:name] %>
+                          <span style="float: right"><i style="font-size:20px;" class="fa fa-angle-double-down"></i></span>
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="<%= key.gsub('.', '_') %>_accordion" class="panel-collapse collapse" role="tabpanel">
+                    <div class="panel-body">
+                      <% databases["nucleotide"].sort_by(&:title).each do | database | %>
+                        <ul class="list-group databases nucleotide">
+                          <% if database.name.include?(key) %>
+                            <li class="list-group-item">
+                              <div class="checkbox databases nucleotide">
+                                <label>
+                                  <input type="checkbox" name="databases[]" value="<%= database.id %>" data-type="<%= database.type %>"/>
+                                    <%= database.title or database.name %>
+                                </label>
+                                <span class="badge dbtype" style=""><%= database.type %></span>
+                                </div>
+                            </li>
+                          <% end %>
+                        </ul>
+                      <% end %>
+
+                      <% databases["protein"].sort_by(&:title).each do | database | %>
+                        <ul class="list-group databases protein">
+                          <% if database.name.include?(key) %>
+                            <li class="list-group-item">
+                              <div class="checkbox databases protein">
+                                <label>
+                                  <input type="checkbox" name="databases[]" value="<%= database.id %>" data-type="<%= database.type %>"/>
+                                    <%= database.title or database.name %>
+                                </label>
+                                <span class="badge dbtype"><%= database.type %></span>
+                              </div>
+                            </li>
+                          <% end %>
+                        </ul>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
       </div>
     </form>
 

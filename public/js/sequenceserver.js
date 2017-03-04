@@ -152,7 +152,7 @@ if (!SS) {
      * Pre-check the only active database checkbox.
      */
     SS.onedb = function () {
-        var database_checkboxes = $(".databases input:checkbox");
+        var database_checkboxes = $(".checkbox.databases input:checkbox");
         if (database_checkboxes.length === 1) {
             database_checkboxes.check();
         }
@@ -581,7 +581,7 @@ $(document).ready(function(){
     // Show tooltip on BLAST button.
     $('#methods').tooltip({
         title: function () {
-            var selected_databases = $(".databases input:checkbox:checked");
+            var selected_databases = $(".checkbox.databases input:checkbox:checked");
             if (selected_databases.length === 0) {
                 return "You must select one or more databases above before" +
                        " you can run a search!";

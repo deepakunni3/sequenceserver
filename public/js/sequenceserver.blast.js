@@ -75,7 +75,7 @@ SS.blast = (function () {
 
     /* */
     var type_of_databases = function () {
-        return $('.databases input:checked').data('type');
+        return $('.checkbox.databases input:checked').data('type');
     };
 
     /*
@@ -88,7 +88,7 @@ SS.blast = (function () {
         }
 
         // must select atleast one database
-        if (!$('.databases input:checked').val()) {
+        if (!$('.checkbox.databases input:checked').val()) {
             return false;
         }
 
@@ -118,10 +118,8 @@ SS.blast = (function () {
     /* determine */
     var signal_database_type_changed = function () {
         var type = type_of_databases(), tmp;
-
         $('.databases input').change(function () {
             tmp = type_of_databases();
-
             if (tmp != type) {
                 type = tmp;
 
@@ -137,7 +135,6 @@ SS.blast = (function () {
      */
     var signal_blast_method_changed = function () {
         var method, _method;
-
         $('#blast').on('sequence_type_changed database_type_changed',
             function (event) {
                   _method = determine_blast_method();
@@ -165,7 +162,6 @@ SS.blast = (function () {
 
         var database_type = type_of_databases();
         var sequence_type = type_of_sequences();
-
         //database type is always known
         switch (database_type) {
             case 'protein':
