@@ -126,12 +126,12 @@ target="#{target}">)
     end
 
     # Render the search form.
-    get '/' do
+    get '/hgd_blast' do
       erb :search, :locals => { :databases => Database.group_by(&:type) }
     end
 
     # BLAST search!
-    post '/' do
+    post '/hgd_blast' do
       erb :result, :locals => { :report => BLAST.run(params) }
     end
 
@@ -145,7 +145,7 @@ target="#{target}">)
     # Use whitespace to separate entries in sequence_ids (all other chars exist
     # in identifiers) and retreival_databases (we don't allow whitespace in a
     # database's name, so it's safe).
-    get '/get_sequence/' do
+    get "/hgd_blast/get_sequence/" do
       sequence_ids = params[:sequence_ids].split(/\s/)
       database_ids = params[:database_ids].split(/\s/)
 
@@ -160,7 +160,7 @@ target="#{target}">)
     end
 
     # Download BLAST report in various formats.
-    get '/download/:search_id.:type' do
+    get '/hgd_blast/download/:search_id.:type' do
       out = BLAST::Formatter.new(params[:search_id], params[:type])
       send_file out.file.path, :filename => out.filename, :type => out.mime
     end
