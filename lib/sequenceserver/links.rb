@@ -123,13 +123,14 @@ module SequenceServer
         representative_database = whichdb[0].name
         organism_prefix1 = representative_database.split('/')[-1].split('_')[0,3].join("_")
         organism_id = 0
-
-        if SequenceServer::ORGANISMS.has_key?(organism_prefix1)
-          organism_id = SequenceServer::ORGANISMS.fetch(organism_prefix1)[:id]
-        else
-          organism_prefix2 = representative_database.split('/')[-1].split('_')[0,4].join("_")
-          if SequenceServer::ORGANISMS.has_key?(organism_prefix2)
-            organism_id = SequenceServer::ORGANISMS.fetch(organism_prefix2)[:id]
+        SequenceServer::ORGANISMS.keys.each do |membership|
+          if SequenceServer::ORGANISMS.fetch(membership).has_key?(organism_prefix1)
+            organism_id = SequenceServer::ORGANISMS.fetch(membership).fetch(organism_prefix1)[:id]
+          else
+            organism_prefix2 = representative_database.split('/')[-1].split('_')[0,4].join("_")
+            if SequenceServer::ORGANISMS.fetch(membership).has_key?(organism_prefix2)
+              organism_id = SequenceServer::ORGANISMS.fetch(membership).fetch(organism_prefix2)[:id]
+            end
           end
         end
 
