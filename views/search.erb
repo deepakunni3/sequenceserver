@@ -292,53 +292,65 @@
       <div class="form-group databases-container">
           <h4>Databases</h4><hr>
           <div>
-            <% SequenceServer::ORGANISMS.keys.sort.each do |key| %>
-              <div class="panel-group" id="accordion" role="tablist">
-                <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="<%= key.gsub('.', '_') %>_heading">
-                    <h4 class="panel-title">
-                      <a role="button" data-toggle="collapse" data-parent="#" href="#<%= key.gsub('.', '_') %>_accordion">
-                          <%= SequenceServer::ORGANISMS[key][:name] %>
-                          <span style="float: right"><i style="font-size:20px;" class="fa fa-angle-double-down"></i></span>
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="<%= key.gsub('.', '_') %>_accordion" class="panel-collapse collapse" role="tabpanel">
-                    <div class="panel-body">
-                      <% databases["nucleotide"].sort_by(&:title).each do | database | %>
-                        <ul class="list-group databases nucleotide">
-                          <% if database.name.include?(key) %>
-                            <li class="list-group-item">
-                              <div class="checkbox databases nucleotide">
-                                <label>
-                                  <input type="checkbox" name="databases[]" value="<%= database.id %>" data-type="<%= database.type %>"/>
-                                    <%= database.title or database.name %>
-                                </label>
-                                <span class="badge dbtype nucleotide" style=""><%= database.type %></span>
-                                </div>
-                            </li>
-                          <% end %>
-                        </ul>
-                      <% end %>
+           <ul class="nav nav-tabs nav-justified">
+              <% SequenceServer::ORGANISMS.keys.sort.each do |membership| %>
+                <li id="<%= membership %>_tab" class="<% if membership == 'BEEBASE' %>active<% end %>"><a href="#<%= membership %>" data-toggle="tab"><%= membership %></a></li>
+              <% end %>
+            </ul>
 
-                      <% databases["protein"].sort_by(&:title).each do | database | %>
-                        <ul class="list-group databases protein">
-                          <% if database.name.include?(key) %>
-                            <li class="list-group-item">
-                              <div class="checkbox databases protein">
-                                <label>
-                                  <input type="checkbox" name="databases[]" value="<%= database.id %>" data-type="<%= database.type %>"/>
-                                    <%= database.title or database.name %>
-                                </label>
-                                <span class="badge dbtype protein"><%= database.type %></span>
-                              </div>
-                            </li>
-                          <% end %>
-                        </ul>
-                      <% end %>
+            <div class="tab-content">
+              <% SequenceServer::ORGANISMS.keys.sort.each do |membership| %>
+                <div class="tab-pane <% if membership == 'BEEBASE' %>active<% end %>" id="<%= membership %>">
+                  <% SequenceServer::ORGANISMS[membership].keys.sort.each do |key| %>
+                    <div role="tabpanel" class="tab-pane" id="<%= membership %>">
+                      <div class="panel-group" id="accordion" role="tablist">
+                        <div class="panel panel-default">
+                          <div class="panel-heading" role="tab" id="<%= key.gsub('.', '_') %>_heading">
+                            <h4 class="panel-title">
+                              <a role="button" data-toggle="collapse" data-parent="#" href="#<%= key.gsub('.', '_') %>_accordion">
+                                  <%= SequenceServer::ORGANISMS[membership][key][:name] %>
+                                  <span style="float: right"><i style="font-size:20px;" class="fa fa-angle-double-down"></i></span>
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="<%= key.gsub('.', '_') %>_accordion" class="panel-collapse collapse" role="tabpanel">
+                            <div class="panel-body">
+                              <% databases["nucleotide"].sort_by(&:title).each do | database | %>
+                                <ul class="list-group databases nucleotide">
+                                  <% if database.name.include?(key) %>
+                                    <li class="list-group-item">
+                                      <div class="checkbox databases nucleotide">
+                                        <label>
+                                          <input type="checkbox" name="databases[]" value="<%= database.id %>" data-type="<%= database.type %>"/>
+                                            <%= database.title or database.name %>
+                                        </label>
+                                        <span class="badge dbtype nucleotide" style=""><%= database.type %></span>
+                                        </div>
+                                    </li>
+                                  <% end %>
+                                </ul>
+                              <% end %>
+                              <% databases["protein"].sort_by(&:title).each do | database | %>
+                                <ul class="list-group databases protein">
+                                  <% if database.name.include?(key) %>
+                                    <li class="list-group-item">
+                                      <div class="checkbox databases protein">
+                                        <label>
+                                          <input type="checkbox" name="databases[]" value="<%= database.id %>" data-type="<%= database.type %>"/>
+                                            <%= database.title or database.name %>
+                                        </label>
+                                        <span class="badge dbtype protein"><%= database.type %></span>
+                                      </div>
+                                    </li>
+                                  <% end %>
+                                </ul>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
                     </div>
                   </div>
-                </div>
+                <% end %>
               </div>
             <% end %>
           </div>
@@ -483,20 +495,16 @@
   </div> <!-- sequence viewing -->
 
   <!-- JS -->
-  <% if settings.production? %>
-    <script src="js/sequenceserver.min.js"></script>
-  <% else %>
-    <script type="text/javascript" src="js/underscore.min.js"></script>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/webshims/polyfiller.js"></script>
-    <script type="text/javascript" src="js/d3.v3.min.js"></script>
-    <script type="text/javascript" src="js/sequenceserver.js"></script>
-    <script type="text/javascript" src="js/sequenceserver.blast.js"></script>
-    <script type="text/javascript" src="js/jquery.t.js"></script>
-    <script type="text/javascript" src="js/sequence.js"></script>
-  <% end %>
+  <script type="text/javascript" src="js/underscore.min.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/webshims/polyfiller.js"></script>
+  <script type="text/javascript" src="js/d3.v3.min.js"></script>
+  <script type="text/javascript" src="js/sequenceserver.js"></script>
+  <script type="text/javascript" src="js/sequenceserver.blast.js"></script>
+  <script type="text/javascript" src="js/jquery.t.js"></script>
+  <script type="text/javascript" src="js/sequence.js"></script>
 
   <!-- HGD footer start -->
   <div id="body_bg" class="page0">
