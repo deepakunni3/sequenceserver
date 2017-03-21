@@ -538,3 +538,7 @@ svg:not(:root) {
   font-size: 13px;
   color: #337AB7;
 }
+
+.nav-tabs a {
+  color: #337ab7;
+}
