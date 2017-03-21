@@ -63,7 +63,7 @@ module SequenceServer
     def sequence_viewer
       accession  = encode self.accession
       database_ids = encode querydb.map(&:id).join(' ')
-      url = "hgd_blast/get_sequence/?sequence_ids=#{accession}" \
+      url = "get_sequence/?sequence_ids=#{accession}" \
             "&database_ids=#{database_ids}"
 
       {
@@ -78,7 +78,7 @@ module SequenceServer
     def fasta_download
       accession  = encode self.accession
       database_ids = encode querydb.map(&:id).join(' ')
-      url = "hgd_blast/get_sequence/?sequence_ids=#{accession}" \
+      url = "get_sequence/?sequence_ids=#{accession}" \
             "&database_ids=#{database_ids}&download=fasta"
 
       {

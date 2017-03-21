@@ -300,7 +300,7 @@ if (!SS) {
         sequence_ids = encodeURIComponent(sequence_ids.join(' '));
         database_ids = encodeURIComponent(database_ids);
 
-        var url = "hgd_blast/get_sequence/?sequence_ids=" + sequence_ids +
+        var url = "get_sequence/?sequence_ids=" + sequence_ids +
             "&database_ids=" + database_ids + '&download=fasta';
 
         return url;
