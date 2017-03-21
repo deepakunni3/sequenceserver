@@ -291,7 +291,7 @@
           <div>
            <ul class="nav nav-tabs nav-justified">
               <% SequenceServer::ORGANISMS.keys.sort.each do |membership| %>
-                <li id="<%= membership %>_tab" class="<% if membership == 'BEEBASE' %>active<% end %>"><a href="#<%= membership %>" data-toggle="tab"><%= membership %></a></li>
+                <li id="<%= membership %>_tab" class="<% if membership == 'BEEBASE' %>active<% end %>"><a href="#<%= membership %>" data-toggle="tab"><%= membership.gsub('_', ' ') %></a></li>
               <% end %>
             </ul>
 
