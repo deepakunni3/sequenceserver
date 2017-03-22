@@ -19,13 +19,9 @@
 
   <link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <% if settings.production? %>
-    <link rel="stylesheet" media="screen,print" type="text/css" href="css/sequenceserver.min.css"/>
-  <% else %>
-    <link rel="stylesheet" media="screen,print" type="text/css" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" media="screen,print" type="text/css" href="css/font-awesome.min.css"/>
-    <link rel="stylesheet" media="screen,print" type="text/css" href="css/custom.css"/>
-  <% end %>
+  <link rel="stylesheet" media="screen,print" type="text/css" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen,print" type="text/css" href="css/font-awesome.min.css"/>
+  <link rel="stylesheet" media="screen,print" type="text/css" href="css/custom.css"/>
 
   <!-- BGD header-specific includes -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -521,20 +517,16 @@
   </div> <!-- sequence viewing -->
 
   <!-- JS -->
-  <% if settings.production? %>
-    <script src="js/sequenceserver.min.js"></script>
-  <% else %>
-    <script type="text/javascript" src="js/underscore.min.js"></script>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/webshims/polyfiller.js"></script>
-    <script type="text/javascript" src="js/d3.v3.min.js"></script>
-    <script type="text/javascript" src="js/sequenceserver.js"></script>
-    <script type="text/javascript" src="js/sequenceserver.blast.js"></script>
-    <script type="text/javascript" src="js/jquery.t.js"></script>
-    <script type="text/javascript" src="js/sequence.js"></script>
-  <% end %>
+  <script type="text/javascript" src="js/underscore.min.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/webshims/polyfiller.js"></script>
+  <script type="text/javascript" src="js/d3.v3.min.js"></script>
+  <script type="text/javascript" src="js/sequenceserver.js"></script>
+  <script type="text/javascript" src="js/sequenceserver.blast.js"></script>
+  <script type="text/javascript" src="js/jquery.t.js"></script>
+  <script type="text/javascript" src="js/sequence.js"></script>
 
   <!-- start of BGD footer -->
   <div id="footer">
