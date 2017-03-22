@@ -123,29 +123,34 @@ module SequenceServer
         representative_database = whichdb[0].name
         organism_prefix = representative_database.split('/')[-1].split('_')[2]
         organism_id = 0
-
         if SequenceServer::ORGANISMS.has_key?(organism_prefix)
           organism_id = SequenceServer::ORGANISMS.fetch(organism_prefix)
+        else
+          organism_prefix2 = representative_database.split('/')[-1].split('_')[2..3].join("_")
+          if SequenceServer::ORGANISMS.has_key?(organism_prefix2)
+            organism_id = SequenceServer::ORGANISMS.fetch(organism_prefix2)
+          end
         end
 
         if id.match(NCBI_ID_PATTERN)
           # NCBI Gene, mRNA or protein
-          # >gi|741912808|ref|XP_010799192.1
           feature_id = id.split('|')[3]
           url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
         elsif id.match('^gnl\|')
           # Genomic sequence
           # >gnl|UMD3.1|SEQNAME
-          seq_name = id.split(':')[1]
+          if id.split('|').length > 0
+            seq_name = id.split('|')[2]
+          else
+            seq_name = id.split(':')[1]
+          end
           fmin = hsps.map(&:sstart).min
           fmax = fmin + hsps.map(&:length).max
           location_string = "#{seq_name}:#{fmin}..#{fmax}"
           location_string = encode location_string
-          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{location_string}&highlight=#{location_string}"
+          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{location_string}"
         elsif id.match('^ref\|')
-          # Header is a normal header
-          # >accession
-          # which is parsed as 'ref|accession'
+          # >ref|NAME
           header = id.split('|')
           if header.length > 0
             feature_id = header[1]
@@ -155,14 +160,9 @@ module SequenceServer
 
           url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
         else
-          # SS parses the seqids and is of the format:
-          # UMD3.1:SEQNAME
-          seq_name = id.split(':')[1]
-          fmin = hsps.map(&:sstart).min
-          fmax = fmin + hsps.map(&:length).max
-          location_string = "#{seq_name}:#{fmin}..#{fmax}"
-          location_string = encode location_string
-          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{location_string}&highlight=#{location_string}"
+          # >NAME
+          feature_id = id
+          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
         end
       end
 
