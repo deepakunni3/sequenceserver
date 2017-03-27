@@ -10,10 +10,10 @@ module SequenceServer
       "GCF_000184785.1_Aflo_1.0" => { 'id': 1583983, 'name': 'Apis florea', 'abbrev': 'Aflo_1.0' },
       "GCF_000188095.1_BIMP_2.0" => { 'id': 1710934, 'name': 'Bombus impatiens', 'abbrev': 'Bimp_2.0' },
       "GCF_000214255.1_Bter_1.0" => { 'id': 3116725, 'name': 'Bombus terrestris', 'abbrev': 'Bter_1.0' },
-      "GCF_001272555.1_ASM127255v1" => { 'id': 0, 'name': 'Dufourea novaeangliae', 'abbrev': 'ASM127255v1' }
+      "GCF_001272555.1_ASM127255v1" => { 'id': 0, 'name': 'Dufourea novaeangliae', 'abbrev': 'ASM127255v1' },
+      "GCF_000220905.1_MROT_1.0" => { 'id': 3122336, 'name': 'Megachile rotundata', 'abbrev': 'MROT_1.0' }
     },
     'ANT_GENOMES_PORTAL' => {
-      "GCF_000220905.1_MROT_1.0" => { 'id': 3122336, 'name': 'Megachile rotundata', 'abbrev': 'MROT_1.0' },
       "GCF_000204515.1_Aech_3.9" => { 'id': 1811476, 'name': 'Acromyrmex echinatior', 'abbrev': 'Aech_3.9' },
       "GCF_000143395.1_Attacep1.0" => { 'id': 0, 'name': 'Atta cephalotes', 'abbrev': 'Attacep1.0' },
       "GCF_000956235.1_wasmannia.A_1.0" => { 'id': 1716495, 'name': 'Wasmannia auropunctata', 'abbrev': 'wasmannia.A_1.0' },
