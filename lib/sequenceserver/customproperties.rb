@@ -10,7 +10,13 @@ module SequenceServer
       "GCF_000184785.1_Aflo_1.0" => { 'id': 1583983, 'name': 'Apis florea', 'abbrev': 'Aflo_1.0' },
       "GCF_000188095.1_BIMP_2.0" => { 'id': 1710934, 'name': 'Bombus impatiens', 'abbrev': 'Bimp_2.0' },
       "GCF_000214255.1_Bter_1.0" => { 'id': 3116725, 'name': 'Bombus terrestris', 'abbrev': 'Bter_1.0' },
-      "GCF_001272555.1_ASM127255v1" => { 'id': 0, 'name': 'Dufourea novaeangliae', 'abbrev': 'ASM127255v1' }
+      "GCF_001272555.1_ASM127255v1" => { 'id': 0, 'name': 'Dufourea novaeangliae', 'abbrev': 'ASM127255v1' },
+      "Cobs_1.4" => { 'id': 0, 'name': 'Cardiocondyla obscurior', 'abbrev': 'Cobs_1.4'},
+      "Eufriesea_mexicana" => { 'id': 0, 'name': 'Eufriesea mexicana', 'abbrev': 'Emex'},
+      "Habropoda_laboriosa" =>  { 'id': 0, 'name': 'Habropoda laboriosa', 'abbrev': 'Hlab' },
+      "Melipona_quadrifasciata" => { 'id': 0, 'name': 'Melipona quadrifasciata', 'abbrev': 'Mqua' },
+      "Lalb" => { 'id': 0, 'name': 'Lasioglossum albipes', 'abbrev': 'Lalb' }
+
     },
     'ANT_GENOMES_PORTAL' => {
       "GCF_000220905.1_MROT_1.0" => { 'id': 3122336, 'name': 'Megachile rotundata', 'abbrev': 'MROT_1.0' },
