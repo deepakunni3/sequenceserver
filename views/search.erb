@@ -298,7 +298,7 @@
             <div class="tab-content">
               <% SequenceServer::ORGANISMS.keys.sort.each do |membership| %>
                 <div class="tab-pane <% if membership == 'BEEBASE' %>active<% end %>" id="<%= membership %>">
-                  <% SequenceServer::ORGANISMS[membership].keys.sort.each do |key| %>
+                  <% SequenceServer::ORGANISMS[membership].keys.each do |key| %>
                     <div role="tabpanel" class="tab-pane" id="<%= membership %>">
                       <div class="panel-group" id="accordion" role="tablist">
                         <div class="panel panel-default">
