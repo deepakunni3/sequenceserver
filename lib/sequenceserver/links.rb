@@ -109,7 +109,7 @@ module SequenceServer
       uniprot_id = encode uniprot_id
       url = "http://www.uniprot.org/uniprot/#{uniprot_id}"
       {
-        :order => 2,
+        :order => 3,
         :title => 'Uniprot',
         :url   => url,
         :icon  => 'fa-external-link'
@@ -117,77 +117,83 @@ module SequenceServer
     end
 
     def jbrowse
-      if SequenceServer::ORGANISMS.empty?
+      if querydb.first.type == "protein"
         url = ''
-      elsif
-        representative_database = whichdb[0].name
-        puts "REP DB: #{representative_database}"
-        organism_prefix = representative_database.split('/')[-1].split('_')[0,2].join("_")
-        puts "PREFIX: #{organism_prefix}"
-        organism_id = 0
-        SequenceServer::ORGANISMS.keys.each do |membership|
-          if SequenceServer::ORGANISMS.fetch(membership).has_key?(organism_prefix)
-            organism_id = SequenceServer::ORGANISMS.fetch(membership).fetch(organism_prefix)[:id]
-          else
-            organism_prefix1 = representative_database.split('/')[-1].split('_')[0,3].join("_")
-            puts "PREFIX1: #{organism_prefix1}"
-            if SequenceServer::ORGANISMS.fetch(membership).has_key?(organism_prefix1)
-              organism_id = SequenceServer::ORGANISMS.fetch(membership).fetch(organism_prefix1)[:id]
+          return nil
+      else
+        if SequenceServer::ORGANISMS.empty?
+          url = ''
+          return nil
+        elsif
+          representative_database = whichdb[0].name
+          puts "REP DB: #{representative_database}"
+          organism_prefix = representative_database.split('/')[-1].split('_')[0,2].join("_")
+          puts "PREFIX: #{organism_prefix}"
+          organism_id = 0
+          SequenceServer::ORGANISMS.keys.each do |membership|
+            if SequenceServer::ORGANISMS.fetch(membership).has_key?(organism_prefix)
+              organism_id = SequenceServer::ORGANISMS.fetch(membership).fetch(organism_prefix)[:id]
             else
-              organism_prefix2 = representative_database.split('/')[-1].split('_')[0,4].join("_")
-              puts "PREFIX2: #{organism_prefix2}"
-              if SequenceServer::ORGANISMS.fetch(membership).has_key?(organism_prefix2)
-                organism_id = SequenceServer::ORGANISMS.fetch(membership).fetch(organism_prefix2)[:id]
+              organism_prefix1 = representative_database.split('/')[-1].split('_')[0,3].join("_")
+              puts "PREFIX1: #{organism_prefix1}"
+              if SequenceServer::ORGANISMS.fetch(membership).has_key?(organism_prefix1)
+                organism_id = SequenceServer::ORGANISMS.fetch(membership).fetch(organism_prefix1)[:id]
               else
-                organism_prefix3 = representative_database.split('/')[-1].split('_')[0,5].join("_")
-                if SequenceServer::ORGANISMS.fetch(membership).has_key?(organism_prefix3)
-                  puts "PREFIX3: #{organism_prefix3}"
-                  organism_id = SequenceServer::ORGANISMS.fetch(membership).fetch(organism_prefix3)[:id]
+                organism_prefix2 = representative_database.split('/')[-1].split('_')[0,4].join("_")
+                puts "PREFIX2: #{organism_prefix2}"
+                if SequenceServer::ORGANISMS.fetch(membership).has_key?(organism_prefix2)
+                  organism_id = SequenceServer::ORGANISMS.fetch(membership).fetch(organism_prefix2)[:id]
+                else
+                  organism_prefix3 = representative_database.split('/')[-1].split('_')[0,5].join("_")
+                  if SequenceServer::ORGANISMS.fetch(membership).has_key?(organism_prefix3)
+                    puts "PREFIX3: #{organism_prefix3}"
+                    organism_id = SequenceServer::ORGANISMS.fetch(membership).fetch(organism_prefix3)[:id]
+                  end
                 end
               end
             end
           end
-        end
 
-        puts id
-        if id.match(NCBI_ID_PATTERN)
-          # NCBI Gene, mRNA or protein
-          # >gi|741912808|ref|XP_010799192.1
-          feature_id = id.split('|')[3]
-          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
-        elsif id.match('^gnl\|')
-          # Genomic sequence
-          # >gnl|UMD3.1|SEQNAME
-          seq_name = ""
-          result = id.split(':')
-          if result.size == 1
-              new_result = id.split('|')
-              seq_name = new_result[2]
-          end
-          fmin = hsps.map(&:sstart).min
-          fmax = fmin + hsps.map(&:length).max
-          location_string = "#{seq_name}:#{fmin}..#{fmax}"
-          location_string = encode location_string
-          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{location_string}&highlight=#{location_string}"
-        elsif id.match('^ref\|')
-          # >ref|NAME
-          header = id.split('|')
-          if header.length > 0
-            feature_id = header[1]
+          puts id
+          if id.match(NCBI_ID_PATTERN)
+            # NCBI Gene, mRNA or protein
+            # >gi|741912808|ref|XP_010799192.1
+            feature_id = id.split('|')[3]
+            url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
+          elsif id.match('^gnl\|')
+            # Genomic sequence
+            # >gnl|UMD3.1|SEQNAME
+            seq_name = ""
+            result = id.split(':')
+            if result.size == 1
+                new_result = id.split('|')
+                seq_name = new_result[2]
+            end
+            fmin = hsps.map(&:sstart).min
+            fmax = fmin + hsps.map(&:length).max
+            location_string = "#{seq_name}:#{fmin}..#{fmax}"
+            location_string = encode location_string
+            url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{location_string}&highlight=#{location_string}"
+          elsif id.match('^ref\|')
+            # >ref|NAME
+            header = id.split('|')
+            if header.length > 0
+              feature_id = header[1]
+            else
+              feature_id = header[0]
+            end
+
+            url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
           else
-            feature_id = header[0]
+            # >NAME
+            feature_id = id
+            url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
           end
-
-          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
-        else
-          # >NAME
-          feature_id = id
-          url = "#{SequenceServer::BASE_URL}/#{SequenceServer::APOLLO_WEBAPP_PATH}/#{organism_id}/jbrowse/index.html?loc=#{feature_id}"
         end
       end
 
-      {
-        :order => 0,
+      return {
+        :order => 4,
         :url   => url,
         :title => "View in JBrowse",
         :class => 'view-jbrowse',
