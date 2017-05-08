@@ -200,6 +200,41 @@ module SequenceServer
         :icon  => 'fa-eye'
       }
     end
+
+    def hymenopteramine
+      # http://www.hymenopteragenome.org/hymenopteramine/portal.do?externalids=XM_016915701.1&class=SequenceFeature
+      if id.match(NCBI_ID_PATTERN)
+        # NCBI Gene, mRNA or protein
+        # >gi|741912808|ref|XP_010799192.1
+        feature_id = id.split('|')[3]
+        url = "http://www.hymenopteragenome.org/hymenopteramine/portal.do?externalids=#{feature_id}&class=SequenceFeature"
+      elsif id.match('^gnl\|')
+        # Genomic sequence
+        # >gnl|UMD3.1|SEQNAME
+        return nil
+      elsif id.match('^ref\|')
+        # >ref|NAME
+        header = id.split('|')
+        if header.length > 0
+          feature_id = header[1]
+        else
+          feature_id = header[0]
+        end
+
+        url = "http://www.hymenopteragenome.org/hymenopteramine/portal.do?externalids=#{feature_id}&class=SequenceFeature"
+      else
+        # >NAME
+        feature_id = id
+        url = "http://www.hymenopteragenome.org/hymenopteramine/portal.do?externalids=#{feature_id}&class=SequenceFeature"
+      end
+      return {
+        :order => 5,
+        :url   => url,
+        :title => "View in HymenopteraMine",
+        :class => 'view-hymenopteramine',
+        :icon  => 'fa-info'
+      }
+    end
   end
 end
 
