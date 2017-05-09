@@ -13,7 +13,7 @@ module SequenceServer
       "GCF_001272555.1_ASM127255v1" => { 'id': 3211148, 'name': 'Dufourea novaeangliae', 'abbrev': 'ASM127255v1' },
       "GCA_001483705.1_ASM148370v1" => { 'id': 3391423, 'name': 'Eufriesea mexicana', 'abbrev': 'Emex'},
       "GCA_001263275.1_ASM126327v1" =>  { 'id': 3766653, 'name': 'Habropoda laboriosa', 'abbrev': 'Hlab' },
-      "Lalb_OGS" => { 'id': 91165, 'name': 'Lasioglossum albipes', 'abbrev': 'Lalb' },
+      "Lalb_v2" => { 'id': 91165, 'name': 'Lasioglossum albipes', 'abbrev': 'Lalb' },
       "GCF_000220905.1_MROT_1.0" => { 'id': 3227255, 'name': 'Megachile rotundata', 'abbrev': 'MROT_1.0' },
       "GCA_001276565.1_ASM127656v1" => { 'id': 3794222, 'name': 'Melipona quadrifasciata', 'abbrev': 'Mqua' },
     },
